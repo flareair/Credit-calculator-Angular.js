@@ -11,9 +11,9 @@ describe('Service: banks', function () {
     banks = _banks_;
   }));
 
-  it('should be ok', function () {
-    expect(banks.length).toBe(2);
-    expect(banks[0].name).toBe('ВТБ24');
+  it('should return bank list with getBanks()', function () {
+    expect(banks.getBanks).toBeDefined();
+    expect(banks.getBanks().length).toBe(2);
   });
 
 });
