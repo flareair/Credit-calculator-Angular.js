@@ -1,1 +1,32 @@
 <h1>Credit Calculator</h1>
+
+<h3>
+  Base price:
+  <span class="text-primary">{{basePrice | formatRouble}}</span>
+</h3>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group" ng-if="banks">
+      <label for="bankSelect">Choose bank</label>
+      <select name="bankSelect" ng-init="current.bank = current.bank || initial" ng-model="current.bank" class="form-control" ng-options="bank.name for bank in banks track by bank.id" ng-change="calculate();">
+      </select>
+      {{current.bank}}
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="monthsSelect">Choose credit time</label>
+            <select name="monthsSelect" ng-init="current.length = current.length || initial.creditLengths[0]" ng-model="current.length" class="form-control" ng-options="length for length in current.bank.creditLengths" ng-change="calculate();"></select>
+          </div>
+        </div>
+        <div class="col-md-6">
+            <label for="firstPaySelect">Choose credit time</label>
+            <select name="firstPaySelect" ng-init="current.firstPay = current.firstPay || initial.firstPays[0]" ng-model="current.firstPay" class="form-control" ng-options="pay for pay in current.bank.firstPays" ng-change="calculate();"></select>          
+        </div>
+      </div>
+    </div>
+    <div class="alert alert info" ng-if="!banks">
+      <p>No credit propositions founded</p>
+    </div>
+  </div>
+</div>
